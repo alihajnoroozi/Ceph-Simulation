@@ -1,0 +1,18 @@
+apiVersion: ceph.rook.io/v1
+kind: CephBlockPool
+metadata:
+  name: rbd-repl3-host
+  namespace: rook-ceph
+spec:
+  failureDomain: host
+  mirroring:
+    mode: image
+  parameters:
+    compression_mode: none
+  quotas: {}
+  replicated:
+    requireSafeReplicaSize: true
+    size: 3
+  statusCheck:
+    mirror:
+      interval: 1m0s
